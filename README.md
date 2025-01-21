@@ -8,13 +8,10 @@ Purpose of this experiment is to perform the 1D column [C1D_PAPA](https://doi.or
 
 
 #### Variations
-- L22DNN : Boundary layer turbulence computed with Deep Neural Network proposed by [Liang et al. 2022](https://doi.org/10.1016/j.ocemod.2022.102059).
+- **L22DNN** : Boundary layer turbulence computed with Deep Neural Network proposed by [Liang et al. 2022](https://doi.org/10.1016/j.ocemod.2022.102059).
 
 
 ## Requirements
-
-**This part must list libraries versions and codes patches used to run the experiments and facilitates reproducibility.
-If one of the experiment variations needs a different software environment, please create another repository from this template.**
 
 ### Compilation
 
