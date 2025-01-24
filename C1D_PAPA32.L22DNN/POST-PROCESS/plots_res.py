@@ -1,5 +1,6 @@
 # modules
 import xarray as xr
+import f90nml as nml
 import cmocean
 from cftime import num2date
 
@@ -33,15 +34,15 @@ def make_plot(data,time_counter,depth,infos,output):
     plt.close()
 
 
-def main(filepath, var_name, fig_name, infos, freq):
+def main(config, file, var_name, fig_name, infos, freq):
 
     # read file
     try:
-        ds = xr.open_dataset(filepath)
+        ds = xr.open_dataset(config+file)
     except:
         return
 
-    print(f'Plotting {var_name}')
+    print(f'   Plotting {var_name}')
 
     # get time and depth
     time_counter = ds.time_counter.values
@@ -59,35 +60,45 @@ def main(filepath, var_name, fig_name, infos, freq):
     var_val = var_val.transpose()
 
     # plot
-    plotpath = fig_name + '_C1D_PAPA32.L22DNN_' + freq + '.png'
+    plotpath = fig_name + '_' + config +'_' + freq + '.png'
     make_plot(var_val,time_counter,dpt,infos,plotpath)
 
 
 
 if __name__=="__main__":
 
+    # Config name
+    # -----------
+    try:
+        namelist = nml.read('namelist_cfg')
+        config = namelist['namrun']['cn_exp']
+    except:
+        config = 'C1D_PAPA32.L22DNN'
+
+    print(f'Figures for config {config}')
+
     # Field profiles
     # --------------
     # temperature
     infos = [ 'T (ºC)' , cmocean.cm.thermal , colors.Normalize(vmin=3.0, vmax=8.0), lambda x: x ]
-    main( filepath='C1D_PAPA32.L22DNN_1d_20100615_20110614_grid_T.nc' , var_name='votemper' , fig_name='T' , infos=infos , freq='1d' )
+    main( config=config, file='_1d_20100615_20110614_grid_T.nc' , var_name='votemper' , fig_name='T' , infos=infos , freq='1d' )
 
     # salinity
     infos = [ 'S (psu)' , cmocean.cm.haline , colors.Normalize(vmin=32, vmax=34), lambda x: x ]
-    main( filepath='C1D_PAPA32.L22DNN_1d_20100615_20110614_grid_T.nc' , var_name='vosaline' , fig_name='S' , infos=infos , freq='1d' )
+    main( config=config, file='_1d_20100615_20110614_grid_T.nc' , var_name='vosaline' , fig_name='S' , infos=infos , freq='1d' )
 
     # U
     infos = [ 'Velocity U (m/s)' , cmocean.cm.balance , colors.Normalize(vmin=-0.15, vmax=0.15), lambda x: x ]
-    main( filepath='C1D_PAPA32.L22DNN_1d_20100615_20110614_grid_U.nc' , var_name='uo' , fig_name='u' , infos=infos , freq='1d' )
+    main( config=config, file='_1d_20100615_20110614_grid_U.nc' , var_name='uo' , fig_name='u' , infos=infos , freq='1d' )
 
     # V
     infos = [ 'Velocity V (m/s)' , cmocean.cm.balance , colors.Normalize(vmin=-0.15, vmax=0.15), lambda x: x ]
-    main( filepath='C1D_PAPA32.L22DNN_1d_20100615_20110614_grid_V.nc' , var_name='vo' , fig_name='v' , infos=infos , freq='1d' )
+    main( config=config, file='_1d_20100615_20110614_grid_V.nc' , var_name='vo' , fig_name='v' , infos=infos , freq='1d' )
 
     # dTdt
     infos = [ 'Infered temperature mixing (ºC/s)' , cmocean.cm.balance , colors.Normalize(vmin=-1.0, vmax=1.0), lambda x: x ]
-    main( filepath='C1D_PAPA32.L22DNN_1d_20100615_20110614_grid_T.nc' , var_name='dTdt' , fig_name='dTdt' , infos=infos , freq='1d' )
+    main( config=config, file='_1d_20100615_20110614_grid_T.nc' , var_name='dTdt' , fig_name='dTdt' , infos=infos , freq='1d' )
 
     # dSdt
     infos = [ 'Infered salinity mixing (psu/s)' , cmocean.cm.balance , colors.Normalize(vmin=-1.0, vmax=1.0), lambda x: x ]
-    main( filepath='C1D_PAPA32.L22DNN_1d_20100615_20110614_grid_T.nc' , var_name='dSdt' , fig_name='dSdt' , infos=infos , freq='1d' )
+    main( config=config, file='_1d_20100615_20110614_grid_T.nc' , var_name='dSdt' , fig_name='dSdt' , infos=infos , freq='1d' )
