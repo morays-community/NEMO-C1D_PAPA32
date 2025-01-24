@@ -72,9 +72,9 @@ def main(filepath_ref, ref_name, filepath, var_name, fig_name, infos, freq):
 
 if __name__=="__main__":
     # temperature profiles error
-    infos = [ 'T_DNN - T_OBS (ºC)' , cmocean.cm.balance , colors.Normalize(vmin=-1.5, vmax=1.5), lambda x: x ]
+    infos = [ 'T - T_OBS (ºC)' , cmocean.cm.balance , colors.Normalize(vmin=-1.5, vmax=1.5), lambda x: x ]
     main( filepath_ref='OSP32_obs_T.nc' , ref_name='T_20', filepath='C1D_PAPA32.L22DNN_1d_20100615_20110614_grid_T.nc' , var_name='votemper' , fig_name='T' , infos=infos , freq='1d' )
 
     # salinity profiles error
-    infos = [ 'S_DNN - S_OBS (psu)' , cmocean.cm.balance , colors.Normalize(vmin=-0.2, vmax=0.2), lambda x: x ]
+    infos = [ 'S - S_OBS (psu)' , cmocean.cm.balance , colors.Normalize(vmin=-0.2, vmax=0.2), lambda x: x ]
     main( filepath_ref='OSP32_obs_S.nc' , ref_name='S_41', filepath='C1D_PAPA32.L22DNN_1d_20100615_20110614_grid_T.nc' , var_name='vosaline' , fig_name='S' , infos=infos , freq='1d' )
