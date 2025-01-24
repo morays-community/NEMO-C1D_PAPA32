@@ -65,7 +65,7 @@ def main(filepath_ref, ref_name, filepath, var_name, fig_name, infos, freq):
     time_counter = time_counter[:var_ref.shape[1]]
 
     # plot
-    plotpath = fig_name + '_error_C1D_PAPA32.L22DNN_' + freq + '_error.png'
+    plotpath = fig_name + '_error_C1D_PAPA32.L22DNN_' + freq + '.png'
     make_plot(diff_var,time_counter,dpt,infos,plotpath)
 
 
