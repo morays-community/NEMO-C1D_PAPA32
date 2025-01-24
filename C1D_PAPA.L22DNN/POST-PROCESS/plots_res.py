@@ -59,7 +59,7 @@ def main(filepath, var_name, fig_name, infos, freq):
     var_val = var_val.transpose()
 
     # plot
-    plotpath = 'C1D_PAPA_DNN_' + freq + '_' + fig_name + '.png'
+    plotpath = fig_name + '_C1D_PAPA32.L22DNN_' + freq + '.png'
     make_plot(var_val,time_counter,dpt,infos,plotpath)
 
 
@@ -70,24 +70,24 @@ if __name__=="__main__":
     # --------------
     # temperature
     infos = [ 'T (ºC)' , cmocean.cm.thermal , colors.Normalize(vmin=3.0, vmax=8.0), lambda x: x ]
-    main( filepath='C1D_PAPA_DNN_1d_20100615_20110614_grid_T.nc' , var_name='votemper' , fig_name='T' , infos=infos , freq='1d' )
+    main( filepath='C1D_PAPA32.L22DNN_1d_20100615_20110614_grid_T.nc' , var_name='votemper' , fig_name='T' , infos=infos , freq='1d' )
 
     # salinity
     infos = [ 'S (psu)' , cmocean.cm.haline , colors.Normalize(vmin=32, vmax=34), lambda x: x ]
-    main( filepath='C1D_PAPA_DNN_1d_20100615_20110614_grid_T.nc' , var_name='vosaline' , fig_name='S' , infos=infos , freq='1d' )
+    main( filepath='C1D_PAPA32.L22DNN_1d_20100615_20110614_grid_T.nc' , var_name='vosaline' , fig_name='S' , infos=infos , freq='1d' )
 
     # U
     infos = [ 'Velocity U (m/s)' , cmocean.cm.balance , colors.Normalize(vmin=-0.15, vmax=0.15), lambda x: x ]
-    main( filepath='C1D_PAPA_DNN_1d_20100615_20110614_grid_U.nc' , var_name='uo' , fig_name='u' , infos=infos , freq='1d' )
+    main( filepath='C1D_PAPA32.L22DNN_1d_20100615_20110614_grid_U.nc' , var_name='uo' , fig_name='u' , infos=infos , freq='1d' )
 
     # V
     infos = [ 'Velocity V (m/s)' , cmocean.cm.balance , colors.Normalize(vmin=-0.15, vmax=0.15), lambda x: x ]
-    main( filepath='C1D_PAPA_DNN_1d_20100615_20110614_grid_V.nc' , var_name='vo' , fig_name='v' , infos=infos , freq='1d' )
+    main( filepath='C1D_PAPA32.L22DNN_1d_20100615_20110614_grid_V.nc' , var_name='vo' , fig_name='v' , infos=infos , freq='1d' )
 
     # dTdt
     infos = [ 'Infered temperature mixing (ºC/s)' , cmocean.cm.balance , colors.Normalize(vmin=-1.0, vmax=1.0), lambda x: x ]
-    main( filepath='C1D_PAPA_DNN_1d_20100615_20110614_grid_T.nc' , var_name='dTdt' , fig_name='dTdt' , infos=infos , freq='1d' )
+    main( filepath='C1D_PAPA32.L22DNN_1d_20100615_20110614_grid_T.nc' , var_name='dTdt' , fig_name='dTdt' , infos=infos , freq='1d' )
 
     # dSdt
     infos = [ 'Infered salinity mixing (psu/s)' , cmocean.cm.balance , colors.Normalize(vmin=-1.0, vmax=1.0), lambda x: x ]
-    main( filepath='C1D_PAPA_DNN_1d_20100615_20110614_grid_T.nc' , var_name='dSdt' , fig_name='dSdt' , infos=infos , freq='1d' )
+    main( filepath='C1D_PAPA32.L22DNN_1d_20100615_20110614_grid_T.nc' , var_name='dSdt' , fig_name='dSdt' , infos=infos , freq='1d' )

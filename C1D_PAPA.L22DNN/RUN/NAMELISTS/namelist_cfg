@@ -38,7 +38,7 @@
 !-----------------------------------------------------------------------
 &namrun        !   parameters of the run
 !-----------------------------------------------------------------------
-   cn_exp      = "C1D_PAPA_DNN" !  experience name
+   cn_exp      = "C1D_PAPA32.L22DNN" !  experience name
    nn_it000    =       1   !  first time step
    nn_itend    =   17520   !  last  time step (std 5475)
    nn_date0    = 20100615  !  date at nit_0000 (format yyyymmdd) used if ln_rstart=F or (ln_rstart=T and nn_rstctl=0 or 1)
@@ -72,8 +72,8 @@
    !___________!_________________________!___________________!___________!_____________!________!___________!__________________!__________!_______________!
    !           !  file name              ! frequency (hours) ! variable  ! time interp.!  clim  ! 'yearly'/ ! weights filename ! rotation ! land/sea mask !
    !           !                         !  (if <0  months)  !   name    !   (logical) !  (T/F) ! 'monthly' !                  ! pairing  !    filename   !
-   sn_tem      = 'L32_init_PAPASTATION'       ,         24.       ,'votemper',  .false.     , .true.,  'daily'  ,    ''            ,    ''    ,    ''
-   sn_sal      = 'L32_init_PAPASTATION'       ,         24.       ,'vosaline',  .false.     , .true.,  'daily'  ,    ''            ,    ''    ,    ''
+   sn_tem      = 'init_PAPASTATION32'       ,         24.       ,'votemper',  .false.     , .true.,  'daily'  ,    ''            ,    ''    ,    ''
+   sn_sal      = 'init_PAPASTATION32'       ,         24.       ,'vosaline',  .false.     , .true.,  'daily'  ,    ''            ,    ''    ,    ''
 /
 !-----------------------------------------------------------------------
 &namwad        !   Wetting and Drying (WaD)                             (default: OFF)
