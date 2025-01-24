@@ -24,11 +24,11 @@ def make_plot(data,time_counter,depth,infos,output):
     # color map
     pcm = ax.pcolormesh(time, depth, data, cmap=cmap, norm=norm)
     cbar = plt.colorbar(pcm, ax=ax, orientation='vertical', pad=0.05, shrink=0.5)
-    plt.title(title)
+    plt.title(title, fontsize=16)
     ax.invert_yaxis()
-    ax.set_ylabel("Depth (m)")
+    ax.set_ylabel("Depth (m)", fontsize=14)
     ax.set_xticks(idx)
-    ax.set_xticklabels(dates, rotation=45, ha="right")
+    ax.set_xticklabels(dates, rotation=45, ha="right", fontsize=14)
     # write fig
     plt.savefig(output, bbox_inches='tight')
     plt.close()
