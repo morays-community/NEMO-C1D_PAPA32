@@ -9,7 +9,7 @@ Purpose of this experiment is to perform the 1D column [C1D_PAPA](https://doi.or
 
 #### Variations
 - **L22DNN** : Boundary layer turbulence computed with Deep Neural Network proposed by [Liang et al. 2022](https://doi.org/10.1016/j.ocemod.2022.102059).
-
+- **AirSeaFlux** : Bulk formula parameterizations computed with [AirSeaFluxCode](https://github.com/NOCSurfaceProcesses/AirSeaFluxCode/tree/master) software from [Biri et al. 2023](10.3389/fmars.2022.1049168) software
 
 ## Requirements
 
@@ -27,7 +27,11 @@ Purpose of this experiment is to perform the 1D column [C1D_PAPA](https://doi.or
   ```bash
   TO_BE_COMPLETED
   ```
-
+- **AirSeaFlux** dependencies:
+  ```
+  cd C1D_PAPA32.AirSeaFlux/INFERENCES/AirSeaFluxCode/AirSeaFluxCode
+  pip install -e .
+  ```
 
 ### Run
 
