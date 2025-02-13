@@ -1,6 +1,7 @@
-# C1D PAPA32 `WORK IN PROGRESS`
+# C1D PAPA32 
 
-`DOI:XXXXX.XXXXX`
+[![DOI](https://zenodo.org/badge/920109235.svg)](https://doi.org/10.5281/zenodo.14866164)
+
 
 ## Context and Motivation
 
@@ -8,7 +9,7 @@ Purpose of this experiment is to perform the 1D column [C1D_PAPA](https://doi.or
 
 
 #### Variations
-- **L22DNN** : Boundary layer turbulence computed with Deep Neural Network proposed by [Liang et al. 2022](https://doi.org/10.1016/j.ocemod.2022.102059).
+- **L22DNN** `IN PROGRESS` : Boundary layer turbulence computed with Deep Neural Network proposed by [Liang et al. 2022](https://doi.org/10.1016/j.ocemod.2022.102059). 
 - **AirSeaFlux** : Bulk formula parameterizations computed with [AirSeaFluxCode](https://github.com/NOCSurfaceProcesses/AirSeaFluxCode/tree/master) software from [Biri et al. 2023](https://doi.org/10.3389/fmars.2022.1049168 ).
 
 ## Requirements
