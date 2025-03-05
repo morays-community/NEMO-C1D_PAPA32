@@ -9,6 +9,7 @@ Purpose of this experiment is to perform the 1D column [C1D_PAPA](https://doi.or
 
 
 #### Variations
+- **W25ANN** `IN PROGRESS` : Air-sea  momentum and heat flux computed with Artifical Neural Network proposed by [Wu et al. 2025](https://github.com/jiarong-wu/mlflux).
 - **L22DNN** `IN PROGRESS` : Boundary layer turbulence computed with Deep Neural Network proposed by [Liang et al. 2022](https://doi.org/10.1016/j.ocemod.2022.102059). 
 - **AirSeaFlux** : Bulk formula parameterizations computed with [AirSeaFluxCode](https://github.com/NOCSurfaceProcesses/AirSeaFluxCode/tree/master) software from [Biri et al. 2023](https://doi.org/10.3389/fmars.2022.1049168 ).
 
@@ -24,6 +25,10 @@ Purpose of this experiment is to perform the 1D column [C1D_PAPA](https://doi.or
 ### Python
 
 - Eophis version : [v1.0.1](https://github.com/alexis-barge/eophis/tree/v1.0.1)
+- **W25ANN** dependencies:
+  ```bash
+  TO_BE_COMPLETED
+  ```
 - **L22DNN** dependencies:
   ```bash
   TO_BE_COMPLETED
