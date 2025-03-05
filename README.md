@@ -27,7 +27,8 @@ Purpose of this experiment is to perform the 1D column [C1D_PAPA](https://doi.or
 - Eophis version : [v1.0.1](https://github.com/alexis-barge/eophis/tree/v1.0.1)
 - **W25ANN** dependencies:
   ```bash
-  TO_BE_COMPLETED
+  cd C1D_PAPA32.W25ANN/INFERENCES/W25ANN
+  pip install -e .
   ```
 - **L22DNN** dependencies:
   ```bash
