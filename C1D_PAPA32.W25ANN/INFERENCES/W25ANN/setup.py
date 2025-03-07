@@ -4,5 +4,5 @@ setup(
     name='mlflux',
     packages=find_packages(),
     url="https://github.com/jiarong-wu/mlflux.git",
-    author="Jiaring Wu",
+    author="Jiarong Wu",
     )
