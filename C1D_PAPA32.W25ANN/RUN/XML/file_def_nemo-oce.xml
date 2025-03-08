@@ -33,13 +33,15 @@
           <field field_ref="empmr"        name="wfo"      />
           <field field_ref="qsr_oce"      name="qsr_oce"  />
           <field field_ref="qns_oce"      name="qns_oce"  />
+          <field field_ref="ext_ql"       name="ext_ql"   />
+          <field field_ref="ext_qs"       name="ext_qs"   />
+          <field field_ref="ext_taux"     name="ext_taux" />
+          <field field_ref="ext_tauy"     name="ext_tauy" />
           <field field_ref="qt_oce"       name="qt_oce"   />
           <field field_ref="saltflx"      name="sfx"      />
           <field field_ref="taum"         name="taum"     />
           <field field_ref="wspd"         name="windsp"   />
 	  <field field_ref="precip"       name="precip"   />
-	  <field field_ref="inf_dTdt"     name="dTdt"     />
-	  <field field_ref="inf_dSdt"     name="dSdt"     />
         </file>
 
        <file id="file2" name_suffix="_grid_U" description="ocean U grid variables" >

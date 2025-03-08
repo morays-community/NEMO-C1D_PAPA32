@@ -126,10 +126,6 @@ that are available in the tidal-forcing implementation (see
     <field id="toce_e3t_vsum300"  field_ref="toce_e3t_300"      unit="degress_C*m"  grid_ref="grid_T_vsum"  detect_missing_value="true" />
     <field id="toce_vmean300"     field_ref="toce_e3t_vsum300"  unit="degree_C"     grid_ref="grid_T_vsum"  detect_missing_value="true" > toce_e3t_vsum300/e3t_vsum300 </field>
 
-    <!-- Inferences  -->
-    <field id="inf_dTdt"      long_name="ML-infered temperature mixing"  unit= "degC/s"  grid_ref="grid_T_3D"/>
-    <field id="inf_dSdt"      long_name="ML-infered salinity mixing"     unit= "1e-3/s"  grid_ref="grid_T_3D"/>
-
     <!-- AGRIF sponge -->
     <field id="agrif_spt"         long_name=" AGRIF t-sponge coefficient"   unit=" " />
 
@@ -459,6 +455,12 @@ that are available in the tidal-forcing implementation (see
       <field id="taum_oce"     long_name="wind stress module over open ocean"           standard_name="magnitude_of_surface_downward_stress"               unit="N/m2"  />
       <field id="utau_oce"     long_name="Wind Stress along i-axis over open ocean (T-points)"  standard_name="surf_down_x_stress_open_oce_Tpoints"        unit="N/m2"   />
       <field id="vtau_oce"     long_name="Wind Stress along j-axis over open ocean (T-points)"  standard_name="surf_down_y_stress_open_oce_Tpoints"        unit="N/m2"    />
+
+      <!-- * variable relative to coupled Python model -->
+      <field id="ext_ql"          long_name="Python-computed latent downward heat flux"      standard_name="python_latent_heat"         unit="W/m2"    />
+      <field id="ext_qs"          long_name="Python-computed sensible downwar heat flux"     standard_name="python_sensible_heat"       unit="W/m2"    />
+      <field id="ext_taux"        long_name="Python-computed wind stress x-component"             standard_name="python_wind_stress"         unit="W/m2"    />
+      <field id="ext_tauy"        long_name="Python-computed wind stress y-component"     standard_name="python_latent_evaporation"  unit="J/kg"    />
 
       <!-- variables computed by the bulk parameterization algorithms (ln_blk) -->
       <field id="Cd_oce"      long_name="Drag coefficient over open ocean"              standard_name="drag_coefficient_water"                unit=""  />

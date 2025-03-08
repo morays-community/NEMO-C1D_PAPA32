@@ -61,9 +61,6 @@ done
 cp $CONFIG_DIR/nemo nemo.exe  || exit 5
 cp $CONFIG_DIR/*.py . || exit 5
 
-## Get input files for coupling, including the namcouple file
-cp $CONFIG_DIR/namcouple . || exit 4
-
 set -e
 ls -l
 
