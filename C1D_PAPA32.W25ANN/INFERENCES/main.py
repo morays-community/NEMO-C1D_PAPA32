@@ -12,10 +12,8 @@ def ocean_info():
     tunnel_config = list()
     tunnel_config.append( { 'label' : 'TO_NEMO_FIELDS', \
                             'grids' : { 'C1D' : {'npts' : (1,1)} }, \
-                            'exchs' : [ {'freq' : 1800, 'grd' : 'C1D', 'lvl' : 32, 'in' : ['T','S','Stokes_x','Stokes_y'], 'out' : ['dTdt','dSdt']}, \
-                                        {'freq' : 1800, 'grd' : 'C1D', 'lvl' : 1,  'in' : ['Q','TAUx','TAUy'], 'out' : []} ] }
-                        )
-                        
+                            'exchs' : [ {'freq' : 1800, 'grd' : 'C1D', 'lvl' : 1, 'in' : ['ux','uy','toce','tair','p','q'], 'out' : ['taux','tauy','Qs','Ql']} ] }
+                        ) 
     return tunnel_config, nemo_nml
 
 
@@ -54,20 +52,16 @@ def production():
 
     #  Models
     # ++++++++
-    from models import add_100
+    from models import W25ann
 
     #  Assemble
     # ++++++++++
     @eophis.all_in_all_out(geo_model=nemo, step=step, niter=niter)
     def loop_core(**inputs):
-        outputs = {} 
-        outputs['dTdt'] = add_100( inputs['T'] )
-        outputs['dSdt'] = add_100( inputs['S'] )
-        # inputs['Q']
-        # inputs['TAUx']
-        # inputs['TAUy']
-        # inputs['Stokes_x']
-        # inputs['Stokes_y']
+        packed_res = W25ann( inputs['ux'], inputs['uy'], inputs['toce'], inputs['tair'], inputs['p'], inputs['q'] )
+
+        outputs= {}
+        outputs['taux'], outputs['tauy'], outputs['Qs'], outputs['Ql'] = packed_res
         return outputs
 
     #  Run
