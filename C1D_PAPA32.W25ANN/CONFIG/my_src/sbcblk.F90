@@ -821,9 +821,9 @@ CONTAINS
          CALL inferences( kt, pwndi, pwndj, ptair, pst, pssq, pslp )
 
          ! Overwrite luxes with results from Python model
-         !psen(:,:) = ext_qs(:,:) * tmask(:,:,1)
-         !plat(:,:) = ext_ql(:,:) * tmask(:,:,1)
-         !taum(:,:) = SQRT(ext_taux(:,:)**2 + ext_tauy(:,:)**2)  * tmask(:,:,1)
+         psen(:,:) = ext_qs(:,:) * tmask(:,:,1)
+         plat(:,:) = ext_ql(:,:) * tmask(:,:,1)
+         taum(:,:) = SQRT(ext_taux(:,:)**2 + ext_tauy(:,:)**2)  * tmask(:,:,1)
 
          DO_2D( nn_hls, nn_hls, nn_hls, nn_hls )
             IF( wndm(ji,jj) > 0._wp ) THEN
