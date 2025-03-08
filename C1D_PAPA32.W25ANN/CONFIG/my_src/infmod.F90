@@ -32,17 +32,18 @@ MODULE infmod
    PUBLIC inferences         ! routine called in stpmlf.F90
    PUBLIC inferences_final   ! routine called in nemogcm.F90
 
-   INTEGER, PARAMETER ::   jps_wnd  = 1 ! Relative wind speed
-   INTEGER, PARAMETER ::   jps_tair = 2 ! Potential air temperature
-   INTEGER, PARAMETER ::   jps_sst  = 3 ! Sea surface temperature
-   INTEGER, PARAMETER ::   jps_hum  = 4 ! Specific humidity
-   INTEGER, PARAMETER ::   jps_slp  = 5 ! Sea level pressure
-   INTEGER, PARAMETER ::   jps_inf = 5  ! total number of sendings
+   INTEGER, PARAMETER ::   jps_ux  = 1   ! Wind speed in x-dir
+   INTEGER, PARAMETER ::   jps_uy = 2    ! Wind speed in y-dir
+   INTEGER, PARAMETER ::   jps_toce = 3  ! Sea surface temperature
+   INTEGER, PARAMETER ::   jps_tair  = 4 ! Air temperature
+   INTEGER, PARAMETER ::   jps_p = 5     ! Sea level pressure
+   INTEGER, PARAMETER ::   jps_q = 6     ! Specific humidity
+   INTEGER, PARAMETER ::   jps_inf = 6   ! total number of sendings
 
-   INTEGER, PARAMETER ::   jpr_lat = 1   ! Latent heat
-   INTEGER, PARAMETER ::   jpr_sen = 2   ! Sensible heat
-   INTEGER, PARAMETER ::   jpr_evp = 3   ! Vaporizatino heat
-   INTEGER, PARAMETER ::   jpr_tau = 4   ! Wind stress
+   INTEGER, PARAMETER ::   jpr_taux = 1   ! wind stress in x-dir
+   INTEGER, PARAMETER ::   jpr_tauy = 2   ! wind stress in y-dir
+   INTEGER, PARAMETER ::   jpr_qs = 3     ! sensible heat
+   INTEGER, PARAMETER ::   jpr_ql = 4     ! latent heat
    INTEGER, PARAMETER ::   jpr_inf = 4   ! total number of receptions
 
    INTEGER, PARAMETER ::   jpinf = MAX(jps_inf,jpr_inf) ! Maximum number of exchanges
@@ -148,19 +149,20 @@ CONTAINS
          ! -------------------------------- !
 
          ! ssnd: Wind speed, Air Temperature, Specific humidity, Sea Surface Temperature, Sea level pressure
-         ssnd(ntypinf,jps_wnd)%clname =  'E_OUT_0'
-         ssnd(ntypinf,jps_tair)%clname = 'E_OUT_1'
-         ssnd(ntypinf,jps_sst)%clname =  'E_OUT_2'
-         ssnd(ntypinf,jps_hum)%clname =  'E_OUT_3'
-         ssnd(ntypinf,jps_slp)%clname =  'E_OUT_4'
+         ssnd(ntypinf,jps_ux)%clname =  'E_OUT_0'
+         ssnd(ntypinf,jps_uy)%clname = 'E_OUT_1'
+         ssnd(ntypinf,jps_toce)%clname =  'E_OUT_2'
+         ssnd(ntypinf,jps_tair)%clname =  'E_OUT_3'
+         ssnd(ntypinf,jps_p)%clname =  'E_OUT_4'
+         ssnd(ntypinf,jps_q)%clname =  'E_OUT_5'
          ! Number of depth levels to couple
          ssnd(ntypinf,:)%nlvl = 1
 
          ! srcv: Wind stress, latent heat, sensible heat, vaporization heat
-         srcv(ntypinf,jpr_tau)%clname = 'E_IN_0'
-         srcv(ntypinf,jpr_lat)%clname = 'E_IN_1'
-         srcv(ntypinf,jpr_sen)%clname = 'E_IN_2'
-         srcv(ntypinf,jpr_evp)%clname = 'E_IN_3'
+         srcv(ntypinf,jpr_taux)%clname = 'E_IN_0'
+         srcv(ntypinf,jpr_tauy)%clname = 'E_IN_1'
+         srcv(ntypinf,jpr_Qs)%clname = 'E_IN_2'
+         srcv(ntypinf,jpr_Ql)%clname = 'E_IN_3'
          ! Number of depth levels to couple
          srcv(ntypinf,:)%nlvl = 1
 
@@ -178,7 +180,7 @@ CONTAINS
    END SUBROUTINE inferences_init
 
 
-   SUBROUTINE inferences( kt, wndm, tair, sst, hum, slp )
+   SUBROUTINE inferences( kt, wndx, wndy, tair, sst, hum, slp )
       !!----------------------------------------------------------------------
       !!             ***  ROUTINE inferences  ***
       !!
@@ -188,7 +190,7 @@ CONTAINS
       !!                * 
       !!----------------------------------------------------------------------
       INTEGER, INTENT(in) ::  kt               ! ocean time step
-      REAL(wp), DIMENSION(jpi,jpj), INTENT(in) :: wndm, tair, hum, sst, slp ! surface fields
+      REAL(wp), DIMENSION(jpi,jpj), INTENT(in) :: wndx, wndy, tair, hum, sst, slp ! surface fields
       !
       INTEGER :: isec, info, jn                       ! local integer
       !!----------------------------------------------------------------------
@@ -201,15 +203,16 @@ CONTAINS
       ! ------  Prepare data to send ------
       !
       ! Wind speed
-      infsnd(jps_wnd)%z3(:,:,ssnd(ntypinf,jps_wnd)%nlvl) = wndm(:,:)
+      infsnd(jps_ux)%z3(:,:,ssnd(ntypinf,jps_ux)%nlvl) = wndx(:,:)
+      infsnd(jps_uy)%z3(:,:,ssnd(ntypinf,jps_uy)%nlvl) = wndy(:,:)
       ! Air temperature
       infsnd(jps_tair)%z3(:,:,ssnd(ntypinf,jps_tair)%nlvl) = tair(:,:)
-      ! SST - convert to Kelvin
-      infsnd(jps_sst)%z3(:,:,ssnd(ntypinf,jps_sst)%nlvl) = sst(:,:) + 273.15_wp
-      ! Specific humidity - convert to g/kg
-      infsnd(jps_hum)%z3(:,:,ssnd(ntypinf,jps_hum)%nlvl) = hum(:,:) * 1000._wp
-      ! Sea level pressure - convert to hPa
-      infsnd(jps_slp)%z3(:,:,ssnd(ntypinf,jps_slp)%nlvl) = slp(:,:) * 0.01_wp
+      ! Ocean temperature
+      infsnd(jps_toce)%z3(:,:,ssnd(ntypinf,jps_toce)%nlvl) = sst(:,:)
+      ! Specific humidity
+      infsnd(jps_q)%z3(:,:,ssnd(ntypinf,jps_q)%nlvl) = hum(:,:)
+      ! Sea level pressure
+      infsnd(jps_p)%z3(:,:,ssnd(ntypinf,jps_p)%nlvl) = slp(:,:)
       !
       ! ========================
       !   Proceed all sendings
@@ -236,15 +239,15 @@ CONTAINS
       ! ------ Distribute receptions  ------
       !
       ! Store latent, sensible, vaporization heat and wind stress
-      ext_latent(:,:)   = infrcv(jpr_lat)%z3(:,:,srcv(ntypinf,jpr_lat)%nlvl)
-      ext_sensible(:,:) = infrcv(jpr_sen)%z3(:,:,srcv(ntypinf,jpr_sen)%nlvl)
-      ext_taum(:,:)     = infrcv(jpr_tau)%z3(:,:,srcv(ntypinf,jpr_tau)%nlvl)
-      ext_evap(:,:)     = infrcv(jpr_evp)%z3(:,:,srcv(ntypinf,jpr_evp)%nlvl)
+      ext_ql(:,:)   = infrcv(jpr_ql)%z3(:,:,srcv(ntypinf,jpr_ql)%nlvl)
+      ext_qs(:,:)   = infrcv(jpr_qs)%z3(:,:,srcv(ntypinf,jpr_qs)%nlvl)
+      ext_taux(:,:) = infrcv(jpr_taux)%z3(:,:,srcv(ntypinf,jpr_taux)%nlvl)
+      ext_tauy(:,:) = infrcv(jpr_tauy)%z3(:,:,srcv(ntypinf,jpr_tauy)%nlvl)
       ! Write returned results
-      CALL iom_put( "ext_lat" , ext_latent )
-      CALL iom_put( "ext_sen" , ext_sensible )
-      CALL iom_put( "ext_tau" , ext_taum )
-      CALL iom_put( "ext_evp" , ext_evap )
+      CALL iom_put( "ext_ql" , ext_ql )
+      CALL iom_put( "ext_qs" , ext_qs )
+      CALL iom_put( "ext_taux" , ext_taux )
+      CALL iom_put( "ext_tauy" , ext_tauy )
       !
       IF( ln_timing )   CALL timing_stop('Python')
       !

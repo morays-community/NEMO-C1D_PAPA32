@@ -818,13 +818,12 @@ CONTAINS
             &               pEvap=pevp(:,:), pfact_evap=rn_efac )
 
          ! Compute Air Sea Flux from Python model
-         CALL inferences( kt, SQRT(pwndi**2 + pwndj**2), ptair, pst, pssq, pslp )
+         CALL inferences( kt, pwndi, pwndj, ptair, pst, pssq, pslp )
 
          ! Overwrite luxes with results from Python model
-         psen(:,:) = ext_sensible(:,:) * tmask(:,:,1)
-         plat(:,:) = ext_latent(:,:) * tmask(:,:,1)
-         taum(:,:) = ext_taum(:,:)  * tmask(:,:,1)
-         pevp(:,:) = -1. * MAX(ext_latent(:,:),0.0_wp) / ext_evap(:,:) * tmask(:,:,1)
+         !psen(:,:) = ext_qs(:,:) * tmask(:,:,1)
+         !plat(:,:) = ext_ql(:,:) * tmask(:,:,1)
+         !taum(:,:) = SQRT(ext_taux(:,:)**2 + ext_tauy(:,:)**2)  * tmask(:,:,1)
 
          DO_2D( nn_hls, nn_hls, nn_hls, nn_hls )
             IF( wndm(ji,jj) > 0._wp ) THEN

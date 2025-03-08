@@ -22,7 +22,7 @@ MODULE inffld
    !!----------------------------------------------------------------------
    !!                    2D Inference Module fields
    !!----------------------------------------------------------------------
-   REAL(wp), PUBLIC, ALLOCATABLE, SAVE, DIMENSION(:,:)  :: ext_sensible, ext_latent, ext_taum, ext_evap !: fields to store 2D Python fields
+   REAL(wp), PUBLIC, ALLOCATABLE, SAVE, DIMENSION(:,:)  :: ext_qs, ext_ql, ext_taux, ext_tauy !: fields to store 2D Python fields
 
    !!----------------------------------------------------------------------
    !!                    3D Inference Module fields
@@ -39,7 +39,7 @@ CONTAINS
       !!---------------------------------------------------------------------
       ierr = 0
       !
-      ALLOCATE( ext_taum(jpi,jpj), ext_latent(jpi,jpj), ext_sensible(jpi,jpj), ext_evap(jpi,jpj) , STAT=ierr )
+      ALLOCATE( ext_taux(jpi,jpj), ext_tauy(jpi,jpj), ext_qs(jpi,jpj), ext_ql(jpi,jpj) , STAT=ierr )
       inffld_alloc = ierr
       !
    END FUNCTION
@@ -53,7 +53,7 @@ CONTAINS
       !!---------------------------------------------------------------------
       ierr = 0
       !
-      DEALLOCATE( ext_taum, ext_latent, ext_sensible, ext_evap  , STAT=ierr )
+      DEALLOCATE( ext_taux, ext_tauy, ext_qs, ext_ql  , STAT=ierr )
       inffld_dealloc = ierr
       !
    END FUNCTION
