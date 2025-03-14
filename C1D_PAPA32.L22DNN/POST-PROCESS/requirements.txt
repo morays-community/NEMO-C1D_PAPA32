@@ -1,3 +1,0 @@
-xarray
-cmocean
-matplotlib

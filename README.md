@@ -1,7 +1,6 @@
-# C1D PAPA32 
+# C1D PAPA32 TurbMix `WORK IN PROGRESS`
 
-[![DOI](https://zenodo.org/badge/920109235.svg)](https://doi.org/10.5281/zenodo.14866164)
-
+`XXXX.XXXX`
 
 ## Context and Motivation
 
@@ -9,9 +8,7 @@ Purpose of this experiment is to perform the 1D column [C1D_PAPA](https://doi.or
 
 
 #### Variations
-- **W25ANN** `IN PROGRESS` : Air-sea  momentum and heat flux computed with Artifical Neural Network proposed by [Wu et al. 2025](https://github.com/jiarong-wu/mlflux).
-- **L22DNN** `IN PROGRESS` : Boundary layer turbulence computed with Deep Neural Network proposed by [Liang et al. 2022](https://doi.org/10.1016/j.ocemod.2022.102059). 
-- **AirSeaFlux** : Bulk formula parameterizations computed with [AirSeaFluxCode](https://github.com/NOCSurfaceProcesses/AirSeaFluxCode/tree/master) software from [Biri et al. 2023](https://doi.org/10.3389/fmars.2022.1049168 ).
+- **L22** `IN PROGRESS` : Turbulent mixing computed with Deep Neural Network proposed by [Liang et al. 2022](https://doi.org/10.1016/j.ocemod.2022.102059). 
 
 ## Requirements
 
@@ -25,19 +22,9 @@ Purpose of this experiment is to perform the 1D column [C1D_PAPA](https://doi.or
 ### Python
 
 - Eophis version : [v1.0.1](https://github.com/alexis-barge/eophis/tree/v1.0.1)
-- **W25ANN** dependencies:
-  ```bash
-  cd C1D_PAPA32.W25ANN/INFERENCES/W25ANN
-  pip install -e .
-  ```
-- **L22DNN** dependencies:
+- **L22** dependencies:
   ```bash
   TO_BE_COMPLETED
-  ```
-- **AirSeaFlux** dependencies:
-  ```
-  cd C1D_PAPA32.AirSeaFlux/INFERENCES/AirSeaFluxCode/AirSeaFluxCode
-  pip install -e .
   ```
 
 ### Run
